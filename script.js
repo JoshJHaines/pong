@@ -40,9 +40,22 @@ function update() {
 	computerPaddleYPosition =
 		computerPaddleYPosition % (GAME_AREA_HEIGHT - PADDLE_HEIGHT);
 
-	// If the computer paddle goes off the edge of the screen, bring it back
-	ballYPosition = ballYPosition % (GAME_AREA_HEIGHT - BALL_SIZE);
-	ballXPosition = ballXPosition % (GAME_AREA_WIDTH - BALL_SIZE);
+	// If the BALL goes off the TOP or BOTTOM edge of the screen, bounce it back
+    if (ballYPosition >= (GAME_AREA_HEIGHT - BALL_SIZE)){
+        ballYVelocity = ballYVelocity * -1
+    } else if (ballYPosition <= 0){
+        ballYVelocity = ballYVelocity * -1
+    }
+
+    // If the BALL goes off the TOP or BOTTOM edge of the screen, bounce it back
+    if (ballXPosition >= (GAME_AREA_WIDTH - BALL_SIZE)){
+        ballXVelocity = ballXVelocity * -1
+    } else if (ballXPosition <= 0){
+        ballXVelocity = ballXVelocity * -1
+    }
+
+	// ballYPosition = ballYPosition % (GAME_AREA_HEIGHT - BALL_SIZE);
+	// ballXPosition = ballXPosition % (GAME_AREA_WIDTH - BALL_SIZE);
 
 	// Apply the y-position
 	computerPaddle.style.top = `${computerPaddleYPosition}px`;
